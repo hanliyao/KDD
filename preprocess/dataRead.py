@@ -7,7 +7,7 @@ pd.set_option('display.width', 1000)
 
 from preprocess import __config__
 
-file_path = "C:\\Users\\hly\\git\\cache"
+file_path = "C:\\Users\\hly\\Documents\\GitHub\\cache"
 names = __config__.names
 names_label = __config__.names_label
 
