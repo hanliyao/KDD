@@ -1,4 +1,6 @@
 from preprocess import dataRead
+from sklearn.preprocessing import MinMaxScaler
+import pandas as pd
 
 def info(data):
     """
@@ -43,9 +45,24 @@ def contious_features(data):
         "dst_host_srv_diff_host_rate", "dst_host_serror_rate", "dst_host_srv_serror_rate",
         "dst_host_rerror_rate", "dst_host_srv_rerror_rate"
     ]
-    return data[num_features].astype(float)
+    features = data[num_features].astype(float)
+    ## 最大最小化特征
+    scaler = MinMaxScaler()
+    features_scaled = pd.DataFrame(scaler.fit_transform(features))
+    return features_scaled
+
+
+def ground_truth(data):
+    """
+    :param data: 
+    :return: 
+    """
+    if 'types' in data.columns:
+        return data['types']
+    else:
+        return None
 
 
 if __name__ == "__main__":
     data = dataRead.corrected()
-    print(protocol_type(data))
+    contious_features(data)
