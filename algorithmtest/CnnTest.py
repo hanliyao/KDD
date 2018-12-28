@@ -54,11 +54,12 @@ cnn.add(Dense(38, activation="softmax"))
 
 cnn.compile(loss="categorical_crossentropy", optimizer="adam",metrics=['accuracy'])
 
-# cnn.fit(X_train, Y_train, epochs=1,validation_data=(X_test, Y_test))
-#
-# loss, accuracy = cnn.evaluate(X_test, Y_test)
-#
-# print("\nLoss: %.2f, Accuracy: %.2f%%" % (loss, accuracy*100))
+cnn.fit(X_train, Y_train, epochs=1,validation_data=(X_test, Y_test))
+
+print("fit complish")
+loss, accuracy = cnn.evaluate(X_test, Y_test)
+
+print("\nLoss: %.2f, Accuracy: %.2f%%" % (loss, accuracy*100))
 
 
 
