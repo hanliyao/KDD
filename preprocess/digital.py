@@ -1,6 +1,7 @@
 from preprocess import dataRead
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
+import numpy as np
 
 def info(data):
     """
@@ -52,17 +53,62 @@ def contious_features(data):
     return features_scaled
 
 
+def f(x):
+    return {
+        'smurf.': 0,
+        'normal.': 1,
+        'neptune.': 2,
+        'snmpgetattack.': 3,
+        'mailbomb.': 4,
+        'guess_passwd.': 5,
+        'snmpguess.': 6,
+        'satan.': 7,
+        'warezmaster.': 8,
+        'back.': 9,
+        'mscan.': 10,
+        'apache2.': 11,
+        'processtable.': 12,
+        'saint.': 13,
+        'portsweep.': 14,
+        'ipsweep.': 15,
+        'httptunnel.': 16,
+        'pod.': 17,
+        'nmap.': 18,
+        'buffer_overflow.': 19,
+        'multihop.': 20,
+        'sendmail.': 21,
+        'named.': 22,
+        'ps.': 23,
+        'rootkit.': 24,
+        'xterm.': 25,
+        'teardrop.': 26,
+        'land.': 27,
+        'xlock.': 28,
+        'xsnoop.': 29,
+        'ftp_write.': 30,
+        'perl.': 31,
+        'sqlattack.': 32,
+        'phf.': 33,
+        'udpstorm.': 34,
+        'loadmodule.': 35,
+        'worm.': 36,
+        'imap.': 37,
+    }.get(x, -1)
+
+
 def ground_truth(data):
     """
     :param data: 
     :return: 
     """
+    truth = []
     if 'types' in data.columns:
-        return data['types']
-    else:
-        return None
+        for value in data['types']:
+            truth.append(f(value))
+
+    return truth
 
 
 if __name__ == "__main__":
     data = dataRead.corrected()
-    contious_features(data)
+    print(ground_truth(data))
