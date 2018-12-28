@@ -11,13 +11,6 @@ file_path = "C:\\Users\\hly\\Documents\\GitHub\\cache"
 names = __config__.names
 names_label = __config__.names_label
 
-def corrected():
-    """
-    test data with corrected labels
-    :return: 
-    """
-    path = os.path.join(file_path,"corrected")
-    return pd.read_csv(path,names=names_label)
 
 def test_data_unlabel_10():
     """
@@ -25,7 +18,7 @@ def test_data_unlabel_10():
     :return: 
     """
     path = os.path.join(file_path, "kddcup.testdata.unlabeled_10_percent")
-    return pd.read_csv(path, names=names)
+    return pd.read_csv(path,header=None, names=names)
 
 def test_data_unlabel():
     """
@@ -33,7 +26,7 @@ def test_data_unlabel():
     :return: 
     """
     path = os.path.join(file_path, "kddcup.testdata.unlabeled")
-    return pd.read_csv(path, names=names)
+    return pd.read_csv(path,header=None,names=names)
 
 def newtestdata_10_percent_unlabeled():
     """
@@ -41,7 +34,17 @@ def newtestdata_10_percent_unlabeled():
     :return: 
     """
     path = os.path.join(file_path, "kddcup.newtestdata_10_percent_unlabeled")
-    return pd.read_csv(path, names=names)
+    return pd.read_csv(path,header=None,names=names)
+
+
+def corrected():
+    """
+    test data with corrected labels
+    :return: 
+    """
+    path = os.path.join(file_path,"corrected")
+    return pd.read_csv(path,header=None,names=names_label)
+
 
 def data_10_percent_corrected():
     """
@@ -49,7 +52,7 @@ def data_10_percent_corrected():
     :return: 
     """
     path = os.path.join(file_path, "kddcup.data_10_percent_corrected")
-    return pd.read_csv(path, names=names_label)
+    return pd.read_csv(path,header=None,names=names_label)
 
 def full_data():
     """
@@ -57,7 +60,7 @@ def full_data():
     :return: 
     """
     path = os.path.join(file_path, "kddcup.data.corrected")
-    return pd.read_csv(path, names=names_label)
+    return pd.read_csv(path,header=None,names=names_label)
 
 if __name__ == "__main__":
     print(full_data())
